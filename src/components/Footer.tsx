@@ -9,7 +9,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="footer-brand">
                         <div className="footer-brand-logo">
-                            <div className="footer-brand-logo-icon">A</div>
+                            <img src="/Essay-on-Aryabhata.jpg" alt="Aryabhata" className="footer-brand-logo-img" />
                             <span>Aryabhata Coaching Center</span>
                         </div>
                         <p>

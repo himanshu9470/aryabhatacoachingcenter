@@ -38,7 +38,7 @@ export default function Navbar() {
       >
         <div className="container">
           <a href="#home" className="navbar-logo" onClick={() => handleClick('#home')}>
-            <div className="navbar-logo-icon">A</div>
+            <img src="/Essay-on-Aryabhata.jpg" alt="Aryabhata" className="navbar-logo-img" />
             <span className="navbar-logo-text">Aryabhata</span>
           </a>
 
