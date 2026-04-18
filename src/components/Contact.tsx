@@ -1,80 +1,59 @@
-import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { HiLocationMarker, HiPhone, HiMail, HiClock } from 'react-icons/hi';
 
-const contactInfo = [
-    {
-        icon: <HiLocationMarker />,
-        title: 'Visit Us',
-        text: 'Patut Bikram Road, Bihar, India',
-    },
-    {
-        icon: <HiPhone />,
-        title: 'Call Us',
-        text: '+91 98765 43210',
-    },
-    {
-        icon: <HiMail />,
-        title: 'Email Us',
-        text: 'info@aryabhatacoaching.com',
-    },
-    {
-        icon: <HiClock />,
-        title: 'Timings',
-        text: 'Mon – Sat: 7:00 AM – 8:00 PM',
-    },
+const info = [
+    { icon: <HiLocationMarker />, title: 'Visit Us', text: 'Patut Bikram Road, Bihar, India' },
+    { icon: <HiPhone />, title: 'Call Us', text: '+91 98765 43210' },
+    { icon: <HiMail />, title: 'Email', text: 'info@aryabhatacoaching.com' },
+    { icon: <HiClock />, title: 'Timings', text: 'Mon – Sat: 7:00 AM – 8:00 PM' },
 ];
 
 export default function Contact() {
-    const [submitted, setSubmitted] = useState(false);
-
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 3000);
-    };
-
     return (
-        <section className="contact section" id="contact">
-            <div className="container">
+        <section id="contact" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4">
                 <motion.div
-                    className="section-header"
+                    className="text-center mb-14"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <span className="section-label">Contact Us</span>
-                    <h2 className="section-title">Get In Touch</h2>
-                    <p className="section-subtitle">
-                        Have questions about admissions? Fill out the form below and we'll get
-                        back to you shortly.
+                    <span className="text-accent-500 font-heading font-semibold text-sm uppercase tracking-wider">Contact Us</span>
+                    <h2 className="font-heading text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Get In Touch</h2>
+                    <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+                        Have questions? Reach out to us and we'll be happy to help.
                     </p>
                 </motion.div>
 
-                <div className="contact-grid">
-                    {/* Left — Info & Map */}
+                <div className="grid lg:grid-cols-2 gap-10">
+                    {/* Info + Map */}
                     <motion.div
-                        className="contact-info"
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
+                        className="space-y-6"
                     >
-                        {contactInfo.map((info, index) => (
-                            <div key={index} className="contact-info-card">
-                                <div className="contact-info-icon">{info.icon}</div>
-                                <div>
-                                    <h4>{info.title}</h4>
-                                    <p>{info.text}</p>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            {info.map((item, i) => (
+                                <div key={i} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+                                    <div className="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center text-lg shrink-0">
+                                        {item.icon}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-heading font-semibold text-gray-900 text-sm">{item.title}</h4>
+                                        <p className="text-sm text-gray-500">{item.text}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
 
-                        <div className="contact-map">
+                        <div className="rounded-2xl overflow-hidden shadow-lg">
                             <iframe
                                 title="Aryabhata Coaching Center Location"
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d213.9997414696577!2d84.8156201674591!3d25.463952099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1773081599831!5m2!1sen!2sin"
+                                className="w-full h-64"
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
@@ -82,95 +61,26 @@ export default function Contact() {
                         </div>
                     </motion.div>
 
-                    {/* Right — Contact Form */}
+                    {/* Contact Form */}
                     <motion.div
-                        className="contact-form"
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
+                        className="bg-gray-50 rounded-2xl p-8"
                     >
-                        <h3>Admission Enquiry</h3>
-
-                        {submitted ? (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                style={{
-                                    textAlign: 'center',
-                                    padding: '3rem 1rem',
-                                    color: 'var(--color-success)',
-                                }}
-                            >
-                                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✓</div>
-                                <h3 style={{ color: 'var(--color-gray-900)', marginBottom: '0.5rem' }}>
-                                    Thank You!
-                                </h3>
-                                <p style={{ color: 'var(--color-gray-600)' }}>
-                                    We've received your enquiry. Our team will contact you soon.
-                                </p>
-                            </motion.div>
-                        ) : (
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label htmlFor="contact-name">Full Name</label>
-                                        <input
-                                            type="text"
-                                            id="contact-name"
-                                            placeholder="Enter your name"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="contact-phone">Phone Number</label>
-                                        <input
-                                            type="tel"
-                                            id="contact-phone"
-                                            placeholder="Enter your phone number"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label htmlFor="contact-email">Email Address</label>
-                                        <input
-                                            type="email"
-                                            id="contact-email"
-                                            placeholder="Enter your email"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="contact-class">Select Class</label>
-                                        <select id="contact-class" required defaultValue="">
-                                            <option value="" disabled>
-                                                Choose your class
-                                            </option>
-                                            <option value="10th">Class 10th</option>
-                                            <option value="12th-science">Class 12th Science</option>
-                                            <option value="math-special">Mathematics Special</option>
-                                            <option value="physics-chemistry">Physics & Chemistry</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="contact-message">Message</label>
-                                    <textarea
-                                        id="contact-message"
-                                        placeholder="Any questions or additional information..."
-                                        rows={4}
-                                    />
-                                </div>
-
-                                <button type="submit" className="btn btn-primary form-submit-btn">
-                                    Submit Enquiry
-                                </button>
-                            </form>
-                        )}
+                        <h3 className="font-heading text-xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Your Name" required className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition bg-white" />
+                                <input type="tel" placeholder="Phone Number" required className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition bg-white" />
+                            </div>
+                            <input type="email" placeholder="Email Address" required className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition bg-white" />
+                            <textarea rows={4} placeholder="Your Message..." className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition resize-none bg-white" />
+                            <button type="submit" className="w-full py-3 bg-gradient-to-r from-primary-700 to-primary-800 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
+                                Send Message
+                            </button>
+                        </form>
                     </motion.div>
                 </div>
             </div>

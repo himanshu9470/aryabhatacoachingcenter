@@ -1,85 +1,81 @@
 import { motion } from 'framer-motion';
-import { FaBook, FaFlask, FaCalculator, FaAtom, FaClock } from 'react-icons/fa';
+import { FaBook, FaFlask, FaCalculator, FaAtom, FaClock, FaArrowRight } from 'react-icons/fa';
 
 const courses = [
     {
         icon: <FaBook />,
-        title: 'Class 10th Board Preparation',
-        description:
-            'Comprehensive coaching for all subjects including Mathematics, Science, Social Science, English, and Hindi. Focused on BSEB and CBSE board patterns.',
+        title: 'Class 10 Board Preparation',
+        desc: 'Comprehensive coaching for all subjects — Mathematics, Science, Social Science, English, and Hindi. Designed for BSEB & CBSE board patterns.',
         duration: '12 Months',
-        color: 'linear-gradient(135deg, #1e3a8a, #3b60c4)',
+        color: 'bg-primary-500',
+        light: 'bg-primary-50 text-primary-600',
     },
     {
         icon: <FaFlask />,
-        title: 'Class 12th Science Preparation',
-        description:
-            'In-depth preparation for Physics, Chemistry, Biology, and Mathematics. Aligned with the latest board exam syllabus and exam patterns.',
+        title: 'Class 12 Science Preparation',
+        desc: 'In-depth preparation for Physics, Chemistry, Biology, and Mathematics aligned with the latest board exam syllabus.',
         duration: '12 Months',
-        color: 'linear-gradient(135deg, #10b981, #047857)',
+        color: 'bg-green-500',
+        light: 'bg-green-50 text-green-600',
     },
     {
         icon: <FaCalculator />,
-        title: 'Mathematics Special Batch',
-        description:
-            'Intensive mathematics coaching for students who want to strengthen their problem-solving skills. Covers algebra, calculus, geometry, and statistics.',
+        title: 'Mathematics Coaching',
+        desc: 'Intensive math coaching covering Algebra, Calculus, Geometry, and Statistics with extensive problem-solving practice.',
         duration: '6 Months',
-        color: 'linear-gradient(135deg, #f97316, #c2410c)',
+        color: 'bg-accent-500',
+        light: 'bg-accent-50 text-accent-600',
     },
     {
         icon: <FaAtom />,
         title: 'Physics & Chemistry Coaching',
-        description:
-            'Specialized coaching in Physics and Chemistry with practical demonstrations, numerical practice, and conceptual clarity sessions.',
+        desc: 'Specialized coaching with practical demonstrations, numerical problem practice, and conceptual clarity sessions.',
         duration: '8 Months',
-        color: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+        color: 'bg-violet-500',
+        light: 'bg-violet-50 text-violet-600',
     },
 ];
 
 export default function Courses() {
     return (
-        <section className="courses section" id="courses">
-            <div className="container">
+        <section id="courses" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4">
                 <motion.div
-                    className="section-header"
+                    className="text-center mb-14"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <span className="section-label">Our Courses</span>
-                    <h2 className="section-title">Programs We Offer</h2>
-                    <p className="section-subtitle">
-                        Structured courses designed to help students master every subject and excel in
-                        their board examinations.
+                    <span className="text-accent-500 font-heading font-semibold text-sm uppercase tracking-wider">Courses</span>
+                    <h2 className="font-heading text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Programs We Offer</h2>
+                    <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+                        Structured courses to help students master every subject and excel in board exams.
                     </p>
                 </motion.div>
 
-                <div className="courses-grid">
-                    {courses.map((course, index) => (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {courses.map((c, i) => (
                         <motion.div
-                            key={index}
-                            className="course-card"
+                            key={i}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col"
                         >
-                            <div className="course-card-header">
-                                <div className="course-icon" style={{ background: course.color, color: '#fff' }}>
-                                    {course.icon}
-                                </div>
-                                <div>
-                                    <h3>{course.title}</h3>
-                                    <p>{course.description}</p>
-                                </div>
+                            <div className={`w-14 h-14 ${c.light} rounded-xl flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform`}>
+                                {c.icon}
                             </div>
-                            <div className="course-card-footer">
-                                <div className="course-duration">
-                                    <FaClock />
-                                    {course.duration}
-                                </div>
-                                <button className="course-enroll-btn">Enroll Now</button>
+                            <h3 className="font-heading font-bold text-gray-900 mb-2">{c.title}</h3>
+                            <p className="text-sm text-gray-500 leading-relaxed mb-4 flex-1">{c.desc}</p>
+                            <div className="flex items-center justify-between">
+                                <span className="flex items-center gap-1 text-xs text-gray-400">
+                                    <FaClock /> {c.duration}
+                                </span>
+                                <button className="flex items-center gap-1 text-sm font-semibold text-accent-500 hover:text-accent-600 transition">
+                                    Enroll <FaArrowRight className="text-xs" />
+                                </button>
                             </div>
                         </motion.div>
                     ))}

@@ -1,95 +1,103 @@
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaArrowRight } from 'react-icons/fa';
-import { HiAcademicCap } from 'react-icons/hi';
+import { FaArrowRight, FaGraduationCap, FaStar, FaUsers } from 'react-icons/fa';
 
 export default function HeroSection() {
-    const handleScroll = (id: string) => {
-        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-    };
+    const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
     return (
-        <section className="hero" id="home">
-            <div className="hero-bg-overlay" />
-            <div className="hero-shapes">
-                <div className="hero-shape hero-shape-1" />
-                <div className="hero-shape hero-shape-2" />
-                <div className="hero-shape hero-shape-3" />
-            </div>
+        <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute inset-0 opacity-10 bg-[url('/hero-bg.png')] bg-cover bg-center" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-500/10 rounded-full -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-400/10 rounded-full translate-y-1/2 -translate-x-1/3" />
+            <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-accent-500/5 rounded-full" />
 
-            <div className="container">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 pt-28 pb-16 grid lg:grid-cols-2 gap-12 items-center">
+                {/* Content */}
                 <motion.div
-                    className="hero-content"
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                    className="text-white"
                 >
-                    <div className="hero-badge">
-                        <span className="hero-badge-dot" />
+                    <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6 backdrop-blur-sm">
+                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                         Admissions Open 2026-27
                     </div>
 
-                    <h1 className="hero-title">
-                        <span className="hero-title-accent">Aryabhata</span>
+                    <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                        <span className="text-accent-400">Aryabhata</span>
                         <br />
                         Coaching Center
                     </h1>
 
-                    <p className="hero-description">
-                        Shaping the Future of Class 10th and 12th Students. Expert guidance
-                        for board exams and competitive exams at Patut Bikram Road, Bihar.
+                    <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-lg">
+                        Best Coaching for Class 10th &amp; 12th Board Preparation. Expert faculty,
+                        proven results, and a learning environment that brings out the best in every student.
                     </p>
 
-                    <div className="hero-buttons">
-                        <button className="btn btn-primary" onClick={() => handleScroll('#contact')}>
-                            Join Now <FaArrowRight />
+                    <div className="flex flex-wrap gap-3 mb-10">
+                        <button
+                            onClick={() => scroll('#batches')}
+                            className="px-7 py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-0.5 transition-all flex items-center gap-2"
+                        >
+                            Explore Batches <FaArrowRight className="text-sm" />
                         </button>
-                        <button className="btn btn-outline-white" onClick={() => handleScroll('#courses')}>
-                            Explore Courses
+                        <button
+                            onClick={() => scroll('#admission')}
+                            className="px-7 py-3 border-2 border-white/40 text-white font-semibold rounded-full hover:bg-white hover:text-primary-800 transition-all"
+                        >
+                            Join Now
                         </button>
                     </div>
 
-                    <div className="hero-stats">
-                        <div className="hero-stat">
-                            <div className="hero-stat-number">500+</div>
-                            <div className="hero-stat-label">Students Taught</div>
-                        </div>
-                        <div className="hero-stat">
-                            <div className="hero-stat-number">95%</div>
-                            <div className="hero-stat-label">Board Results</div>
-                        </div>
-                        <div className="hero-stat">
-                            <div className="hero-stat-number">10+</div>
-                            <div className="hero-stat-label">Expert Teachers</div>
-                        </div>
+                    {/* Stats */}
+                    <div className="grid grid-cols-3 gap-6 max-w-md">
+                        {[
+                            { icon: <FaUsers />, num: '500+', label: 'Students' },
+                            { icon: <FaStar />, num: '95%', label: 'Board Results' },
+                            { icon: <FaGraduationCap />, num: '10+', label: 'Teachers' },
+                        ].map((s, i) => (
+                            <div key={i} className="text-center">
+                                <div className="text-accent-400 text-lg mb-1">{s.icon}</div>
+                                <div className="font-heading text-2xl font-bold">{s.num}</div>
+                                <div className="text-xs text-white/60">{s.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </motion.div>
 
+                {/* Hero Image */}
                 <motion.div
-                    className="hero-image"
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="hidden lg:flex justify-center"
                 >
-                    <div className="hero-image-wrapper">
-                        <img src="/hero-bg.png" alt="Students learning at Aryabhata Coaching Center" />
-
-                        <div className="hero-image-badge hero-image-badge-1 animate-float">
-                            <div className="hero-image-badge-icon orange">
+                    <div className="relative">
+                        <img
+                            src="/hero-bg.png"
+                            alt="Students at Aryabhata Coaching Center"
+                            className="rounded-2xl shadow-2xl max-w-md w-full"
+                        />
+                        {/* Floating Badge 1 */}
+                        <div className="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 animate-float">
+                            <div className="w-10 h-10 bg-accent-100 text-accent-600 rounded-lg flex items-center justify-center">
                                 <FaGraduationCap />
                             </div>
-                            <div className="hero-image-badge-text">
-                                <strong>Board Toppers</strong>
-                                <span>Every Year</span>
+                            <div>
+                                <p className="text-sm font-bold text-gray-900">Board Toppers</p>
+                                <p className="text-xs text-gray-500">Every Year</p>
                             </div>
                         </div>
-
-                        <div className="hero-image-badge hero-image-badge-2 animate-float" style={{ animationDelay: '1s' }}>
-                            <div className="hero-image-badge-icon blue">
-                                <HiAcademicCap />
+                        {/* Floating Badge 2 */}
+                        <div className="absolute -top-2 -right-4 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 animate-float" style={{ animationDelay: '1.5s' }}>
+                            <div className="w-10 h-10 bg-primary-100 text-primary-700 rounded-lg flex items-center justify-center">
+                                <FaStar />
                             </div>
-                            <div className="hero-image-badge-text">
-                                <strong>Expert Faculty</strong>
-                                <span>10+ Teachers</span>
+                            <div>
+                                <p className="text-sm font-bold text-gray-900">95% Results</p>
+                                <p className="text-xs text-gray-500">Consistent</p>
                             </div>
                         </div>
                     </div>

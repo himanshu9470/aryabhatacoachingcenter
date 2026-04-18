@@ -1,73 +1,115 @@
-# React + TypeScript + Vite
+# 🎓 Aryabhata Coaching Center
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, high-performance EduTech platform built for **Aryabhata Coaching Center**. This web application provides a comprehensive interface for students and parents to explore courses, view batch timings, meet teachers, and apply for admissions online.
 
-Currently, two official plugins are available:
+![Aryabhata Coaching Center Banner](https://images.unsplash.com/photo-1523050853063-bd807a0cb066?q=80&w=2070&auto=format&fit=crop)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **✨ Modern & Responsive UI**: Seamless experience across devices (Mobile, Tablet, Desktop).
+- **📋 Online Admission Form**: Integrated form for students to apply directly through the platform.
+- **📚 Course & Batch Management**: Detailed views for different competitive exams and subjects.
+- **👨‍🏫 Faculty Profiles**: Get to know the educators behind the success.
+- **🏆 Results Gallery**: Showcasing top performers and success stories.
+- **🛠️ Student Resources**: Sections for Study Material and Test Series information.
+- **🖼️ Image Gallery**: Visual tour of the coaching center facilities.
+- **📞 Contact Integration**: Easy-to-use contact form and location details.
+- **⚡ Fast Performance**: Built with Vite and React 19 for instantaneous page loads.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Navigation**: [React Router DOM](https://reactrouter.com/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Project Structure
+
+```text
+aryabhata-coaching-center/
+├── src/
+│   ├── components/       # Reusable UI components
+│   │   ├── AdmissionForm.tsx
+│   │   ├── AnnouncementBar.tsx
+│   │   ├── Batches.tsx
+│   │   ├── Contact.tsx
+│   │   ├── HeroSection.tsx
+│   │   └── ... (and more)
+│   ├── assets/           # Static assets (images, fonts)
+│   ├── App.tsx           # Main App component
+│   ├── main.tsx          # Entry point
+│   └── index.css         # Global styles & Tailwind config
+├── public/               # Public assets
+├── package.json          # Project dependencies & scripts
+└── tsconfig.json         # TypeScript configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18.x or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/himanshu9470/aryabhatacoachingcenter.git
+   ```
+
+2. **Navigate to the project directory:**
+   ```bash
+   cd aryabhata-coaching-center
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser:**
+   Navigate to `http://localhost:5173` to see the application in action.
+
+---
+
+## 🏗️ Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
 ```
+
+The output will be generated in the `dist/` directory, ready to be deployed to any static hosting service.
+
+---
+
+## 📄 License
+
+This project is private and intended for use by Aryabhata Coaching Center.
+
+---
+
+## 🤝 Contributing
+
+Contact the project maintainer for permission to contribute or for major changes.
+
+---
+
+*Made with ❤️ for Aryabhata Coaching Center design and crafted by [Himanshuforge](https://himanshukr.me/)*
