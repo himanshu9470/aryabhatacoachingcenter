@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -18,6 +19,8 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,39 +28,61 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleClick = (href: string) => {
+  // Handle hash scrolling after navigation
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+
+    if (location.pathname === '/') {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+      }
+    } else {
+      navigate('/' + href);
+    }
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
+        initial={{ y: -100 }}
+        animate={{ y: (scrolled || location.pathname !== '/') ? 0 : 36 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`left-0 right-0 z-40 transition-all duration-300 w-full ${scrolled
-          ? 'fixed top-0 bg-white/95 backdrop-blur-xl shadow-lg py-2'
-          : 'absolute bg-transparent py-3'
+        className={`left-0 right-0 z-40 transition-all duration-300 w-full fixed top-0 ${scrolled || location.pathname !== '/'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg py-2'
+          : 'bg-transparent py-4'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
+          <Link
+            to="/#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center gap-2 group"
-            onClick={(e) => { e.preventDefault(); handleClick('#home'); }}
           >
             <img
               src="/Essay-on-Aryabhata.jpg"
               alt="Aryabhata"
               className="w-10 h-10 rounded-full object-cover border-2 border-white/30 group-hover:border-accent-400 transition"
             />
-            <span className={`font-heading font-bold text-lg transition ${scrolled ? 'text-gray-900' : 'text-white'
+            <span className={`font-heading font-bold text-lg transition ${scrolled || location.pathname !== '/' ? 'text-gray-900' : 'text-white'
               }`}>
               Aryabhata
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-1">
@@ -65,8 +90,8 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleClick(link.href); }}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition hover:bg-white/10 ${scrolled
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`px-3 py-2 text-xs font-semibold rounded-lg transition hover:bg-white/10 ${scrolled || location.pathname !== '/'
                   ? 'text-gray-600 hover:text-primary-700 hover:bg-primary-50'
                   : 'text-white/85 hover:text-white'
                   }`}
@@ -74,19 +99,18 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#admission"
-              onClick={(e) => { e.preventDefault(); handleClick('#admission'); }}
-              className="ml-2 px-5 py-2 bg-gradient-to-r from-accent-500 to-accent-600 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-accent-500/30 hover:-translate-y-0.5 transition-all"
+            <Link
+              to="/enroll"
+              className="ml-2 px-6 py-2 bg-gradient-to-r from-accent-500 to-accent-600 text-white text-xs font-bold rounded-full hover:shadow-lg hover:shadow-accent-500/30 hover:-translate-y-0.5 transition-all uppercase tracking-wider"
             >
-              Admission
-            </a>
+              Enroll Now
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(true)}
-            className={`lg:hidden text-2xl transition ${scrolled ? 'text-gray-900' : 'text-white'}`}
+            className={`lg:hidden text-2xl transition ${scrolled || location.pathname !== '/' ? 'text-gray-900' : 'text-white'}`}
             aria-label="Open menu"
           >
             <HiMenuAlt3 />
@@ -119,25 +143,25 @@ export default function Navbar() {
               >
                 <HiX />
               </button>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 overflow-y-auto">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleClick(link.href); }}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-700 transition"
                   >
                     {link.label}
                   </a>
                 ))}
               </div>
-              <a
-                href="#admission"
-                onClick={(e) => { e.preventDefault(); handleClick('#admission'); }}
+              <Link
+                to="/enroll"
+                onClick={() => setMobileOpen(false)}
                 className="mt-4 px-5 py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white text-center font-semibold rounded-full"
               >
-                Admission
-              </a>
+                Enroll Now
+              </Link>
             </motion.div>
           </>
         )}

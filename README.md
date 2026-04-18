@@ -2,7 +2,7 @@
 
 A premium, high-performance EduTech platform built for **Aryabhata Coaching Center**. This web application provides a comprehensive interface for students and parents to explore courses, view batch timings, meet teachers, and apply for admissions online.
 
-![Aryabhata Coaching Center Banner](https://images.unsplash.com/photo-1523050853063-bd807a0cb066?q=80&w=2070&auto=format&fit=crop)
+![Aryabhata Coaching Center Banner](./public/aryabhat%20home%20page%20.jpeg)
 
 ---
 

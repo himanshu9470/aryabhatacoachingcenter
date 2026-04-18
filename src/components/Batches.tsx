@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FaBook, FaFlask, FaCalculator, FaAtom, FaClock, FaUserTie, FaCalendarAlt } from 'react-icons/fa';
 
 const batches = [
@@ -111,9 +112,12 @@ export default function Batches() {
                                         <span>{batch.startDate}</span>
                                     </div>
                                 </div>
-                                <button className="w-full py-2.5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-accent-500/25 transition-all">
+                                <Link 
+                                    to={`/enroll?batch=${encodeURIComponent(batch.title)}`}
+                                    className="block w-full text-center py-2.5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-accent-500/25 transition-all"
+                                >
                                     Enroll Now
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}
